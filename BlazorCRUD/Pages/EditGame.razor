@@ -1,5 +1,6 @@
 ﻿@page "/game"
 @using BlazorCRUD.Model;
+@inject NavigationManager NavigationManager
 
 <PageTitle>New game</PageTitle>
 <h1>Game Catelog</h1>
@@ -40,5 +41,6 @@
     private void HandleSubmit()
     {
         GameClient.AddGame(game);
+        NavigationManager.NavigateTo("/");
     }
 }
