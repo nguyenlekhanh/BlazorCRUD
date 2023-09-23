@@ -3,9 +3,9 @@
 @using BlazorCRUD.Model;
 @inject NavigationManager NavigationManager
 
-<PageTitle>New game</PageTitle>
+<PageTitle>@title</PageTitle>
 <h1>Game Catelog</h1>
-<h3>New Game</h3>
+<h3>@title</h3>
 
 @if(game is null)
 {
@@ -51,6 +51,7 @@
     [Parameter]
     public int? Id { get; set; }
 
+    private string title = string.Empty;
 
     private Game? game;
 
@@ -67,6 +68,8 @@
                 Price = foundGame.Price,
                 ReleaseDate = foundGame.ReleaseDate,
             };
+
+            title = $"Edit {game.Name}";
         } else
         {
             game = new()
@@ -75,6 +78,7 @@
                 Genre = string.Empty,
                 ReleaseDate = DateTime.UtcNow
             };
+            title = "New Game";
         }
     }
 
