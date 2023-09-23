@@ -42,4 +42,21 @@ public static class GameClient
         game.Id = games.Max(game => game.Id) + 1;
         games.Add(game);
     }
+
+    public static Game GetGame(int id)
+    {
+        return games.Find(game => game.Id == id) ?? throw new Exception("Cound not find game!");
+    }
+
+    public static void UpdateGame(Game updatedGame)
+    {
+        Game existingGame = GetGame(updatedGame.Id);
+        if (existingGame != null)
+        {
+            existingGame.Name = updatedGame.Name;
+            existingGame.Genre = updatedGame.Genre;
+            existingGame.Price = updatedGame.Price;
+            existingGame.ReleaseDate = updatedGame.ReleaseDate;
+        }
+    }
 }
